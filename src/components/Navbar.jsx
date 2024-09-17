@@ -5,6 +5,7 @@ import { BsBag } from "react-icons/bs";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import {faRegistered} from "@fortawesome/free-solid-svg-icons"
 import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
+
 const Navbar = () => {
   return (
     <nav className="bg-white shadow-lg text-[18px] fixed w-full top-0 left-0 right-0 z-50 ">
