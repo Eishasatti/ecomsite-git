@@ -14,7 +14,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <a href="/" className="text-2xl font-bold flex items-center space-x-2">
               <BsBag />
-              <span>Bags_World</span>
+              <span className="px-2">Bags_World</span>
             </a>
           </div>
           <div className="hidden md:flex space-x-4">
@@ -34,7 +34,7 @@ const Navbar = () => {
             </a>
             <a href="/" className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faCartPlus} />
-              <span>Cart</span>
+              <span>Cart (0)</span>
             </a>
           </div>
           <div className="md:hidden flex items-center">
