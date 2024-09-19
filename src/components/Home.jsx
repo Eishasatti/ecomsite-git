@@ -1,13 +1,14 @@
 import React from "react";
 import Products from "./Products";
 
+
 const Home = () => {
   return (
     <div className="hero">
-      <div class="card bg-dark text-white  border-0">
+      <div className="card bg-dark text-white  border-0">
         <img
-          src="/assets/bag2.jpg"
-          class="card-img-top"
+          src="/assets/bag1.jpg"
+          className="my-5 card-img-top left-0 right-0"
           alt="Background image"
           height="550px"
         />
@@ -22,6 +23,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Products/>
     </div>
   );
 };
