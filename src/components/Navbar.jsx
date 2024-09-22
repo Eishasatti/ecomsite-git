@@ -8,8 +8,9 @@ import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   return (
+    
     <nav className="bg-white shadow-lg text-[18px] fixed w-full top-0 left-0 right-0 z-50 ">
-      <div className="container mx-auto px-4">
+      <div className="container  mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-4">
             <a href="/" className="text-2xl font-bold flex items-center space-x-2">
@@ -64,6 +65,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
+    
   );
 };
 
