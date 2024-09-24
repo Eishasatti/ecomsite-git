@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Skeleton from 'react-loading-skeleton';
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -37,7 +38,12 @@ const Products = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <>
+    <div className="col-md-3">
+      <Skeleton height={350}/>
+    </div>
+    </>
+
   }
 
   if (error) {
@@ -51,16 +57,33 @@ const Products = () => {
   //     </>
   //   );
   // };
-
+const filterProduct=(cat)=>{
+const updatedList=data.filter((x)=>x.category===cat);
+setFilter(updatedList);
+}
   const ShowProducts = () => {
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button className="btn btn-outline-dark me-2">ALL</button>
-          <button className="btn btn-outline-dark me-2">LOUIS VUITTON</button>
-          <button className="btn btn-outline-dark me-2">GUCCI</button>
-          <button className="btn btn-outline-dark me-2">FENDI</button>
-          <button className="btn btn-outline-dark me-2">YSL</button>
+          <button className="btn btn-outline-dark me-2" onClick={()=>{
+            setFilter(data)
+          }}>ALL</button>
+          <button className="btn btn-outline-dark me-2"onClick={()=>{
+            filterProduct("LV")
+          }}>
+            LOUIS VUITTON</button>
+          <button className="btn btn-outline-dark me-2" onClick={()=>{
+            filterProduct("GUCCI")
+          }}>GUCCI</button>
+          <button className="btn btn-outline-dark me-2" onClick={()=>{
+            filterProduct("FENDI")
+          }}>FENDI</button>
+          <button className="btn btn-outline-dark me-2" onClick={()=>{
+            filterProduct("YSL")
+          }}>YSL</button>
+           <button className="btn btn-outline-dark me-2" onClick={()=>{
+            filterProduct("CH")
+          }}>Channel</button>
         </div>
         {filter.map((product) => {
           return (
@@ -68,10 +91,13 @@ const Products = () => {
               <div className="card h-100 text-center p-4" key={product.id}>
                 <img src={product.image} className='card-img-top h-[250px]' height='250px' alt={product.name} />
                 <div className="card-body">
-                  <h5 className="card-title mb-0">{product.name.substring(0,12)}</h5>
-                  <p className="card-text">
+                  <h5 className="card-title mb-0">{product.name.substring(0,12)}...</h5>
+                  <p className="card-text lead fw-bold">
                     ${product.price}
                   </p>
+                  <a href="/" className='btn btn-outline-dark'>
+                  Buy Now
+                  </a>
                 </div>
               </div>
             </div>
