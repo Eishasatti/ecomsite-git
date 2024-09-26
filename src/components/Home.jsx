@@ -1,11 +1,11 @@
 import React from "react";
 import Products from "./Products";
-import Header from "./Header";
+
 
 const Home = () => {
   return (
     <>
-    <Header/>
+    
     <div className="container-fluid w-full my-2 py-2 hero">
       <div className="card container-fluid text-white border-3 w-full">
         <img src="/assets/bag7.jpg" className="card-img w-full h-[650px]" alt="background image"/>

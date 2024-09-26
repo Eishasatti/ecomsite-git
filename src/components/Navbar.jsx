@@ -1,5 +1,5 @@
 import React from "react";
-
+import {NavLink} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BsBag } from "react-icons/bs";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
@@ -13,30 +13,30 @@ const Navbar = () => {
       <div className="container  mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-4">
-            <a href="/" className="text-2xl font-bold flex items-center space-x-2">
+            <NavLink to="/" className="text-2xl font-bold flex items-center space-x-2">
               <BsBag />
               <span className="px-2">Bags_World</span>
-            </a>
+            </NavLink>
           </div>
           <div className="hidden md:flex space-x-4">
-            <a href="/" className="text-gray-800 hover:text-gray-600">Home</a>
-            <a href="/" className="text-gray-800 hover:text-gray-600">Products</a>
-            <a href="/" className="text-gray-800 hover:text-gray-600">Contact</a>
+            <NavLink to="/" className="text-gray-800 hover:text-gray-600">Home</NavLink>
+            <NavLink to="/products" className="text-gray-800 hover:text-gray-600">Products</NavLink>
+            <NavLink to="/contact" className="text-gray-800 hover:text-gray-600">Contact</NavLink>
           </div>
           <div className="hidden md:flex space-x-4">
-            <a href="/" className="btn btn-outline-dark flex items-center space-x-2">
+            <NavLink to="/login" className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faSignInAlt} />
               <span>Login</span>
-            </a>
-            <a href="/" className="btn btn-outline-dark flex items-center space-x-2">
+            </NavLink>
+            <NavLink to="/register" className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faRegistered} />
-              <span>Signup</span>
+              <span>Register</span>
 
-            </a>
-            <a href="/" className="btn btn-outline-dark flex items-center space-x-2">
+            </NavLink>
+            <NavLink to="/cart" className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faCartPlus} />
               <span>Cart (0)</span>
-            </a>
+            </NavLink>
           </div>
           <div className="md:hidden flex items-center">
             <button className="outline-none mobile-menu-button">
@@ -58,10 +58,12 @@ const Navbar = () => {
       </div>
       <div className="mobile-menu hidden md:hidden">
         <ul className="">
-          <li className=""><a href="/" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Home</a></li>
-          <li className=""><a href="/" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Products</a></li>
-          <li className=""><a href="/" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Contact</a></li>
-          <li className=""><a href="/" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Login</a></li>
+          <li className=""><NavLink to="/" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Home</NavLink></li>
+          <li className=""><NavLink to="/products" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Products</NavLink></li>
+          <li className=""><NavLink to="/contact" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Contact</NavLink></li>
+          <li className=""><NavLink to="/login" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Login</NavLink></li>
+          <li className=""><NavLink to="/register" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Register</NavLink></li>
+       
         </ul>
       </div>
     </nav>
