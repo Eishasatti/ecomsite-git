@@ -15,6 +15,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Product />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/cart" element={<Cart />} /> {/* Ensure this is added */}
       </Routes>
     </Router>
   );
