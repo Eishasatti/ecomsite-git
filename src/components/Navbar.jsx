@@ -1,13 +1,21 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BsBag } from "react-icons/bs";
+import CartModal from './CartModal'; // Import the CartModal component
+
 import { faSignInAlt, faRegistered, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const state=useSelector((state)=>state.handlecart);
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
   return (
+    <>
     <nav className="bg-white shadow-lg text-[18px] fixed w-full top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
@@ -31,10 +39,10 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faRegistered} />
               <span>Register</span>
             </NavLink> */}
-            <NavLink to="/cart" className="btn btn-outline-dark flex items-center space-x-2">
+            <button onClick={toggleCart} className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faCartPlus} />
               <span>Cart ({state.length})</span>
-            </NavLink>
+            </button>
           </div>
           <div className="md:hidden flex items-center">
             <button className="outline-none mobile-menu-button">
@@ -63,6 +71,8 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
+     <CartModal isOpen={isCartOpen} onClose={toggleCart} /> {/* Render CartModal here */}
+     </>
   );
 };
 
