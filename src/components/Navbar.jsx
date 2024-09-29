@@ -1,16 +1,13 @@
 import React from "react";
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BsBag } from "react-icons/bs";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import {faRegistered} from "@fortawesome/free-solid-svg-icons"
-import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faRegistered, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   return (
-    
-    <nav className="bg-white shadow-lg text-[18px] fixed w-full top-0 left-0 right-0 z-50 ">
-      <div className="container  mx-auto px-4">
+    <nav className="bg-white shadow-lg text-[18px] fixed w-full top-0 left-0 right-0 z-50">
+      <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-4">
             <NavLink to="/" className="text-2xl font-bold flex items-center space-x-2">
@@ -31,7 +28,6 @@ const Navbar = () => {
             <NavLink to="/register" className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faRegistered} />
               <span>Register</span>
-
             </NavLink>
             <NavLink to="/cart" className="btn btn-outline-dark flex items-center space-x-2">
               <FontAwesomeIcon icon={faCartPlus} />
@@ -42,7 +38,6 @@ const Navbar = () => {
             <button className="outline-none mobile-menu-button">
               <svg
                 className="w-6 h-6 text-gray-500"
-                x-show="!showMenu"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -63,11 +58,9 @@ const Navbar = () => {
           <li className=""><NavLink to="/contact" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Contact</NavLink></li>
           <li className=""><NavLink to="/login" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Login</NavLink></li>
           <li className=""><NavLink to="/register" className="block text-sm px-2 py-4 text-gray-800 hover:bg-gray-200 transition duration-300">Register</NavLink></li>
-       
         </ul>
       </div>
     </nav>
-    
   );
 };
 
