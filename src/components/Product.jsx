@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useSelector ,useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addCart } from '../redux/actions';
 import React, { useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
@@ -9,11 +9,13 @@ const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true); // Set initial loading to true
-const dispatch=useDispatch();
-const addProduct=(product)=>{
-    dispatch(addCart(product));
-}
+    const [isAdded, setIsAdded] = useState(false); // Track if the product has been added
+    const dispatch = useDispatch();
 
+    const addProduct = (product) => {
+        dispatch(addCart(product));
+        setIsAdded(true); // Set to true when added to cart
+    }
 
     useEffect(() => {
         const getProduct = async () => {
@@ -68,8 +70,12 @@ const addProduct=(product)=>{
                         $ {product.price}
                     </h3>
                     <p className="lead">{product.description}</p>
-                    <button className="btn btn-outline-dark px-4 py-2" onClick={()=>addProduct(product)}>
-                        Add to Cart
+                    <button
+                        className="btn btn-outline-dark px-4 py-2"
+                        onClick={() => addProduct(product)}
+                        disabled={isAdded} // Disable button if already added
+                    >
+                        {isAdded ? "Added to Cart" : "Add to Cart"}
                     </button>
                     <NavLink to='/cart' className="btn btn-dark ms-2 px-3 py-2">
                         Go to Cart

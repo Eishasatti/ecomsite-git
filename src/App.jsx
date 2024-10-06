@@ -7,7 +7,9 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Product from './components/Product';
 import Contact from './components/Contact';
-import Cart from './components/Cart';
+import CheckoutForm from './components/CheckoutForm';
+// import Cart from './components/Cart';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/contact" element={<Contact/>} />
+        <Route path="/checkout" element={<CheckoutForm/>} />
         {/* <Route path="/login" element={<Login />} /> */}
         {/* <Route path="/register" element={<Register />} /> */}
         {/* <Route path="/cart" element={<Cart />} /> */}

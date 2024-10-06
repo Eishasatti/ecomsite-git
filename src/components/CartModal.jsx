@@ -1,9 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const CartModal = ({ isOpen, onClose }) => {
   const cartItems = useSelector((state) => state.handlecart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleAddItem = (item) => {
     dispatch({ type: 'ADDITEM', payload: item });
@@ -11,6 +13,13 @@ const CartModal = ({ isOpen, onClose }) => {
 
   const handleRemoveItem = (item) => {
     dispatch({ type: 'DELITEM', payload: item });
+  };
+
+  const handleCheckout = () => {
+    onClose();
+    setTimeout(() => {
+      navigate('/checkout');
+    }, 100); // Small delay to ensure the modal closes before navigation
   };
 
   // Calculate total price
@@ -38,16 +47,16 @@ const CartModal = ({ isOpen, onClose }) => {
                   </div>
                   <div className="flex space-x-2">
                     <button
-                      className="bg-blue-500 text-white px-4 py-2"
+                      className="bg-blue-500 btn btn-primary text-white px-4 m-2 py-2"
                       onClick={() => handleRemoveItem(item)}
                     >
-                      Remove 1
+                      -
                     </button>
                     <button
-                      className="bg-green-500 text-white px-4 py-2"
+                      className="bg-green-500 btn btn-secondary text-white m-2 px-4 py-2"
                       onClick={() => handleAddItem(item)}
                     >
-                      Add 1
+                      +
                     </button>
                   </div>
                 </li>
@@ -56,8 +65,8 @@ const CartModal = ({ isOpen, onClose }) => {
             <h2 className="mt-4 text-xl">Total Price: ${totalPrice.toFixed(2)}</h2>
           </div>
         )}
-        <button className="mt-4 bg-red-500 text-white px-4 py-2" onClick={onClose}>
-          Close
+        <button className="mt-4 bg-red-500 rounded-md text-white px-4 py-2" onClick={handleCheckout}>
+          Checkout
         </button>
       </div>
     </div>
