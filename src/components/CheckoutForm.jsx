@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { FaShippingFast } from "react-icons/fa";
+
 
 const CheckoutForm = () => {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+   
+    formState: { errors, isSubmitting },
   } = useForm();
   const [isDifferentShipping, setIsDifferentShipping] = useState(false);
+ const delay=(d)=>{
+  return new Promise((resolve,reject)=>{
+    setTimeout(() => {
+      resolve()
+    }, d*1000);
+  })
+ }
 
-  const onSubmit = (data) => console.log(data);
-
+  const onSubmit = async(data) => {
+   await delay(2)
+    console.log(data);
+  }
   console.log(watch("example")); // watch input value by passing the name of it
 
   return (
+    <>
+    {isSubmitting && <div>
+     LOAding
+      </div>}
     <div className="container mx-auto my-7 p-6"  style={{ backgroundImage: 'url("https://static.vecteezy.com/system/resources/previews/011/097/213/large_2x/bags-fashion-seamless-background-free-vector.jpg")' }}>
       <h1 className='my-3 py-3 font-bold text-4xl text-black text-center'>Please fill all the details and click on Place Order</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="bg-gradient-to-r from-blue-50 to-purple-50 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md mx-auto">
@@ -154,6 +168,7 @@ const CheckoutForm = () => {
 
         <div className="flex items-center justify-between">
           <input 
+          disabled={isSubmitting}
             type="submit" 
             value="Place Order" 
             className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -161,6 +176,7 @@ const CheckoutForm = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 
