@@ -1,30 +1,38 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { addCart, delCart } from '../redux/actions'; // Make sure this path is correct
 
 const CartModal = ({ isOpen, onClose }) => {
-  const cartItems = useSelector((state) => state.handlecart);
+  const cartItems = useSelector((state) => state.handlecart.items); // Select cart items from Redux state
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Handle adding an item to the cart
   const handleAddItem = (item) => {
-    dispatch({ type: 'ADDITEM', payload: item });
+    dispatch(addCart(item));
   };
 
+  // Handle removing an item from the cart
   const handleRemoveItem = (item) => {
-    dispatch({ type: 'DELITEM', payload: item });
+    dispatch(delCart(item));
   };
 
+  // Handle checkout process
   const handleCheckout = () => {
-    onClose();
+    onClose(); // Close the modal
     setTimeout(() => {
-      navigate('/checkout');
+      navigate('/checkout'); // Navigate to checkout after closing the modal
     }, 100); // Small delay to ensure the modal closes before navigation
   };
 
-  // Calculate total price
-  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.qty, 0);
+  // Calculate total price with error handling
+  const totalPrice = cartItems.reduce((total, item) => {
+    const itemTotal = (item.price || 0) * (item.qty || 0); // Fallback to 0 if item.price or item.qty is undefined
+    return total + itemTotal;
+  }, 0);
 
+  // If modal is not open, return null
   if (!isOpen) return null;
 
   return (
@@ -65,7 +73,11 @@ const CartModal = ({ isOpen, onClose }) => {
             <h2 className="mt-4 text-xl">Total Price: ${totalPrice.toFixed(2)}</h2>
           </div>
         )}
-        <button className="mt-4 bg-red-500 rounded-md text-white px-4 py-2" onClick={handleCheckout}>
+        <button
+          className={`mt-4 rounded-md text-white px-4 py-2 ${cartItems.length === 0 ? 'bg-gray-500 cursor-not-allowed' : 'bg-red-500'}`}
+          onClick={handleCheckout}
+          disabled={cartItems.length === 0}
+        >
           Checkout
         </button>
       </div>

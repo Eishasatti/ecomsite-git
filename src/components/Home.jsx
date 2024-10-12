@@ -7,7 +7,7 @@ const Home = () => {
     <>
     
     <div className="container-fluid w-full my-2 py-2 hero">
-      <div className="card container-fluid text-white border-3 w-full">
+      <div className="card container-fluid text-white  w-full">
         <img src="/assets/bag7.jpg" className="card-img w-full h-[650px]" alt="background image"/>
         <div className="card-img-overlay w-full container-fluid">
         

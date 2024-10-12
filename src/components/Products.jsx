@@ -38,90 +38,75 @@ const Products = () => {
     };
   }, []);
 
-  if (loading) {
-    return <>
-    <div className="col-md-3">
-      <Skeleton height={350}/>
-    </div>
-    </>
+  const filterProduct = (cat) => {
+    const updatedList = data.filter((x) => x.category === cat);
+    setFilter(updatedList);
+  };
 
-  }
-
-  if (error) {
-    return <div>Error loading data.</div>;
-  }
-
-  // const Loading = () => {
-  //   return (
-  //     <>
-  //       Loading...
-  //     </>
-  //   );
-  // };
-const filterProduct=(cat)=>{
-const updatedList=data.filter((x)=>x.category===cat);
-setFilter(updatedList);
-}
   const ShowProducts = () => {
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button className="btn btn-outline-dark me-2" onClick={()=>{
-            setFilter(data)
-          }}>ALL</button>
-          <button className="btn btn-outline-dark me-2"onClick={()=>{
-            filterProduct("LV")
-          }}>
-            LOUIS VUITTON</button>
-          <button className="btn btn-outline-dark me-2" onClick={()=>{
-            filterProduct("GUCCI")
-          }}>GUCCI</button>
-          <button className="btn btn-outline-dark me-2" onClick={()=>{
-            filterProduct("FENDI")
-          }}>FENDI</button>
-          <button className="btn btn-outline-dark me-2" onClick={()=>{
-            filterProduct("YSL")
-          }}>YSL</button>
-           <button className="btn btn-outline-dark me-2" onClick={()=>{
-            filterProduct("CH")
-          }}>Channel</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>ALL</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("LV")}>LOUIS VUITTON</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("GUCCI")}>GUCCI</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("FENDI")}>FENDI</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("YSL")}>YSL</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("CH")}>CHANEL</button>
         </div>
-        {filter.map((product) => {
-          return (
-            <div className="col-md-3 mb-4">
-              <div className="card h-100 text-center p-4" key={product.id}>
-                <img src={product.image} className='card-img-top h-[250px]' height='250px' alt={product.name} />
+        <div className="row">
+          {filter.map((product) => (
+            <div className="col-md-3 mb-4" key={product.id}>
+              <div className="card h-100 text-center p-4">
+                <img src={product.image} className="card-img-top h-[250px]" alt={product.name} />
                 <div className="card-body">
-                  <h5 className="card-title mb-0">{product.name.substring(0,12)}...</h5>
+                  <h5 className="card-title mb-0">{product.name.substring(0, 12)}...</h5>
                   <p className="card-text lead fw-bold">
                     ${product.price}
                   </p>
-                  <NavLink to={`/products/${product.id}`} className='btn btn-outline-dark'>
-                  Buy Now
+                  <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">
+                    Buy Now
                   </NavLink>
                 </div>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </>
     );
   };
 
   return (
-    <>
-      <div className='container my-5 py-5   '>
-        <div className="row">
-          <div className="col-12 mb-5">
-            <h1 className='display-6 fw-bolder text-center mb-5 pb-5'>Latest Products</h1>
-            <hr />
-          </div>
-        </div>
-        <div className="row justify-content-center">
-          {loading ? " " : <ShowProducts />}
+    <div className="container my-5 py-5">
+      <div className="row">
+        <div className="col-12 mb-5">
+          <h1 className="display-6 fw-bolder text-center mb-5 pb-5">Latest Products</h1>
+          <hr />
         </div>
       </div>
-    </>
+      <div className="row justify-content-center">
+        {loading ? (
+          <>
+            <div className="col-md-3">
+              <Skeleton height={350} />
+            </div>
+            <div className="col-md-3">
+              <Skeleton height={350} />
+            </div>
+            <div className="col-md-3">
+              <Skeleton height={350} />
+            </div>
+            <div className="col-md-3">
+              <Skeleton height={350} />
+            </div>
+          </>
+        ) : error ? (
+          <div>Error loading data.</div>
+        ) : (
+          <ShowProducts />
+        )}
+      </div>
+    </div>
   );
 };
 

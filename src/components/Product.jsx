@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addCart } from '../redux/actions';
 import React, { useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
@@ -10,6 +10,7 @@ const Product = () => {
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true); // Set initial loading to true
     const [isAdded, setIsAdded] = useState(false); // Track if the product has been added
+    const [error, setError] = useState(null); // Track if there's an error
     const dispatch = useDispatch();
 
     const addProduct = (product) => {
@@ -20,12 +21,14 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
+            setError(null); // Reset error state before fetching
             try {
                 const response = await axios.get(`/api/data/products/${id}`);
-                console.log('Product data:', response.data); // Add this line to log the response
+                console.log('Product data:', response.data); // Log the response
                 setProduct(response.data.product);
             } catch (error) {
                 console.error("Error fetching the product:", error);
+                setError("Error fetching the product. Please try again later.");
             } finally {
                 setLoading(false);
             }
@@ -89,7 +92,7 @@ const Product = () => {
         <div>
             <div className="container py-5">
                 <div className="row py-4">
-                    {loading ? <Loading /> : <ShowProduct />}
+                    {loading ? <Loading /> : error ? <div>{error}</div> : <ShowProduct />}
                 </div>
             </div>
         </div>
