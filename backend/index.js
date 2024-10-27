@@ -5,6 +5,8 @@ import cors from 'cors';
 const app = express();
 app.use(cors({
     origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+    credentials: true 
 }));
 
 
