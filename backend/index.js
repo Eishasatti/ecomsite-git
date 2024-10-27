@@ -358,7 +358,7 @@ app.get('/api/data/products/:id', (req, res) => {
     }
 });
 
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

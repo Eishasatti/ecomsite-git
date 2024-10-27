@@ -57,10 +57,11 @@ const Product = () => {
     const ShowProduct = () => {
         return (
             <>
-                <div className="col-md-6">
+            
+                <div className="col-md-6 my-11 py-15">
                     <img src={product.image} alt={product.name} height='400px' width='400px' />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6 my-11 py-15">
                     <h4 className="text-uppercase text-black-50">
                         {product.category}
                     </h4>
@@ -80,10 +81,9 @@ const Product = () => {
                     >
                         {isAdded ? "Added to Cart" : "Add to Cart"}
                     </button>
-                    <NavLink to='/cart' className="btn btn-dark ms-2 px-3 py-2">
-                        Go to Cart
-                    </NavLink>
+                  
                 </div>
+            
             </>
         );
     };
